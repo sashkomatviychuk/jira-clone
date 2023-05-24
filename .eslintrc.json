@@ -1,0 +1,25 @@
+{
+  "extends": ["react-app"],
+  "plugins": ["prettier", "react"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-console": "error",
+    "no-duplicate-imports": "error",
+    "eqeqeq": "error",
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "prefer-template": "error",
+    "lines-between-class-members": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-unused-vars": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-redeclare": "error"
+  }
+}
