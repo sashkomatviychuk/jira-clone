@@ -21,11 +21,11 @@ import {
 
 export const handlers = [
   rest.get('/api/issues', (req, res, ctx) => {
-    const userIds = req.url.searchParams.get('userIds');
+    const assigneeIds = req.url.searchParams.getAll('userIds').map((v) => parseInt(v));
 
     const filter: IssuesFilter = {
       query: req.url.searchParams.get('search') || '',
-      assigneeIds: userIds ? userIds.split(',').map((v) => parseInt(v)) : [],
+      assigneeIds,
     };
 
     return res(ctx.json(getIssues(filter)));

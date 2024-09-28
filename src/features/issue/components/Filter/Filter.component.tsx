@@ -10,7 +10,7 @@ import { User } from 'app/project/project.interfaces';
 import { FilterContext } from 'features/project/contexts/Filters.context';
 import { AvatarBorder } from 'components/common/Avatar';
 import { ClearFilters, User as UserStyled, UserFilter as UserFilterStyled } from './Filter.styled';
-import { useGetProjectQuery } from 'app/project/project.api';
+import { useGetProjectQuery } from 'features/project/api/project.api';
 
 type UserFilterProps = {
   value?: number[];

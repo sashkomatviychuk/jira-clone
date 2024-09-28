@@ -3,7 +3,7 @@ import Breadcrumbs from 'components/shared/Breadcrumbs';
 import ProjectHeader from '../../project/components/ProjectHeader/ProjectHeader.component';
 import Filters from '../components/Filter/Filter.component';
 import { FiltersProvider } from '../../project/contexts/Filters.context';
-import { useGetProjectQuery } from 'app/project/project.api';
+import { useGetProjectQuery } from 'features/project/api/project.api';
 import Board from '../components/Board';
 import { Outlet } from 'react-router-dom';
 

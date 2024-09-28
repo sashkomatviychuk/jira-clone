@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import { GroupBase, StylesConfig, components } from 'react-select';
 
 import Select, { IOption } from 'components/controls/Select';
-import { useGetProjectQuery } from 'app/project/project.api';
+import { useGetProjectQuery } from 'features/project/api/project.api';
 
 type UserSelectProps = {
   defaultValue?: Nullable<number | number[]>;

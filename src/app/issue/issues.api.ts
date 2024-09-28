@@ -1,5 +1,5 @@
 import { ProjectFilter } from 'app/project/project.interfaces';
-import { api } from '../shared/api';
+import { api } from '../../shared/api';
 import {
   CreateIssuePayload,
   Issue,

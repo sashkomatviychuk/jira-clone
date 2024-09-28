@@ -5,7 +5,7 @@ import SidebarStyled, { Divider } from './Sidebar.styled';
 import Icon from 'components/common/Icon';
 import ProjectInfo from 'features/project/components/ProjectInfo';
 import NavLink from 'components/common/NavLink';
-import { useGetProjectQuery } from 'app/project/project.api';
+import { useGetProjectQuery } from 'features/project/api/project.api';
 
 const Sidebar: FC = () => {
   const { data: project } = useGetProjectQuery();

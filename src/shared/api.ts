@@ -13,13 +13,9 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 3 });
  * and to ensure that the file injecting the endpoints is loaded
  */
 export const api = createApi({
-  reducerPath: 'splitApi',
-
   baseQuery: baseQueryWithRetry,
-
-  tagTypes: ['Project', 'Issue', 'Comment'],
-
   endpoints: () => ({}),
+  // tagTypes: ['Project', 'Issue', 'Comment'],
 });
 
 export const enhancedApi = api.enhanceEndpoints({
