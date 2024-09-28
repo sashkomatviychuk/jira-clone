@@ -1,4 +1,4 @@
-import { Project, User } from 'app/project/project.interfaces';
+import { Project, User } from 'types/project';
 import {
   CommentModel,
   CreateCommentPayload,
@@ -10,8 +10,8 @@ import {
   UpdateIssuePayload,
 } from './models';
 import { comments, issues, nextId, project, users } from './data';
-import { Issue } from 'app/issue/issue.interface';
-import { Comment } from 'app/comment/comment.interfaces';
+import { Issue } from 'types/issue';
+import { Comment } from 'types/comment';
 import intersection from 'lodash/intersection';
 
 export const findById = <T extends ID>(entities: T[], id: number): Optional<T> => {

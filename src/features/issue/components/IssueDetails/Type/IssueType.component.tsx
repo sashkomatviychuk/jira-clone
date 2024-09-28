@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useFormikContext } from 'formik';
 import { useParams } from 'react-router-dom';
 
-import { UpdateIssuePayload } from 'app/issue/issue.interface';
+import { UpdateIssuePayload } from 'types/issue';
 import { getTypeOptions } from 'app/issue/issue.service';
 import Select, { IOption } from 'components/controls/Select';
 import { SingleValueProps, components } from 'react-select';

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { IOption } from 'components/controls/Select';
-import { Issue, IssuePriority, IssueStatus, IssueType } from './issue.interface';
+import { Issue, IssuePriority, IssueStatus, IssueType } from 'types/issue';
 import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 import { IconName } from 'components/common/Icon';

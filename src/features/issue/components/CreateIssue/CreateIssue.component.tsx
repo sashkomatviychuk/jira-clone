@@ -6,7 +6,7 @@ import { components } from 'react-select';
 import { Description, Error, Label, Row } from 'components/controls/Form';
 import { Input } from './CreateIssue.styled';
 import Button from 'components/controls/Button';
-import { CreateIssuePayload, IssuePriority, IssueType } from 'app/issue/issue.interface';
+import { CreateIssuePayload, IssuePriority, IssueType } from 'types/issue';
 import { useCreateIssueMutation } from 'app/issue/issues.api';
 import { Row as FlexRow } from 'components/common/Row';
 import Editor from 'components/controls/Editor';

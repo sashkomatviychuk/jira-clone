@@ -10,7 +10,7 @@ import {
   deleteIssueComment,
 } from './helpers';
 import { project } from './data';
-import { Project } from 'app/project/project.interfaces';
+import { Project } from 'types/project';
 import {
   CreateCommentPayload,
   CreateIssuePayload,

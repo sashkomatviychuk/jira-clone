@@ -1,4 +1,4 @@
-import { Issue, UpdateIssuePayload } from 'app/issue/issue.interface';
+import { Issue, UpdateIssuePayload } from 'types/issue';
 import { IssueSchema } from 'app/issue/issue.validator';
 import { useUpdateIssueMutation } from 'app/issue/issues.api';
 import { FormikProvider } from 'formik';

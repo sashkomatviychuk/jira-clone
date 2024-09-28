@@ -3,7 +3,7 @@ import { SelectWithTheme, IOption, isSingleValue } from 'components/controls/Sel
 import { OptionProps, components } from 'react-select';
 import styled from 'styled-components';
 import { FieldWrapper, Label } from '../IssueDetails/IssueDetails.styled';
-import { IssueStatus, UpdateIssuePayload } from 'app/issue/issue.interface';
+import { IssueStatus, UpdateIssuePayload } from 'types/issue';
 import { getStatusOptions, statusBgColors, statusColors } from 'app/issue/issue.service';
 import { useFormikContext } from 'formik';
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
-import { Issue, IssueStatus } from 'app/issue/issue.interface';
+import { Issue, IssueStatus } from 'types/issue';
 import {
   Column,
   Title,

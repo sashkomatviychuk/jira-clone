@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FieldWrapper, Label } from '../IssueDetails.styled';
 import UserSelect from '../../UserSelect';
 import { useFormikContext } from 'formik';
-import { UpdateIssuePayload } from 'app/issue/issue.interface';
+import { UpdateIssuePayload } from 'types/issue';
 
 const Reporter: FC = () => {
   const formik = useFormikContext<UpdateIssuePayload>();

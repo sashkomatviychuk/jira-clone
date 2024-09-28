@@ -3,7 +3,7 @@ import isEqual from 'lodash/isEqual';
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
 
-import { ProjectFilter } from 'app/project/project.interfaces';
+import { ProjectFilter } from 'types/project';
 import { useDebounce } from 'shared/hooks/common';
 
 type FilterContextProps = {

@@ -1,5 +1,6 @@
-import { User } from 'app/project/project.interfaces';
-import { Comment } from 'app/comment/comment.interfaces';
+import { Comment } from 'types/comment';
+
+type User = any; // todo replace with read User type
 
 export enum IssueType {
   bug = 'bug',

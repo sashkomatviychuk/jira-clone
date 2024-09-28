@@ -6,7 +6,7 @@ import get from 'lodash/get';
 import { Row } from 'components/common/Row';
 import { Button } from 'components/controls/Button';
 import Searchbar from 'components/controls/Searchbar';
-import { User } from 'app/project/project.interfaces';
+import { User } from 'types/project';
 import { FilterContext } from 'features/project/contexts/Filters.context';
 import { AvatarBorder } from 'components/common/Avatar';
 import { ClearFilters, User as UserStyled, UserFilter as UserFilterStyled } from './Filter.styled';

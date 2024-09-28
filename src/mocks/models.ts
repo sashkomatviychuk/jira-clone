@@ -1,4 +1,4 @@
-import { IssuePriority, IssueType } from 'app/issue/issue.interface';
+import { IssuePriority, IssueType } from 'types/issue';
 
 export interface CommentModel extends ID {
   userId: number;

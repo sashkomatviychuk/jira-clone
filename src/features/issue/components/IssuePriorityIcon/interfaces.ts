@@ -1,4 +1,4 @@
-import { IssuePriority } from 'app/issue/issue.interface';
+import { IssuePriority } from 'types/issue';
 
 export interface IssuePriorityIconProps {
   type: IssuePriority;

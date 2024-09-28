@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { FC } from 'react';
 import { components } from 'react-select';
 
-import { Project, ProjectSettings } from 'app/project/project.interfaces';
+import { Project, ProjectSettings } from 'types/project';
 import { useUpdateProjectMutation } from 'features/project/api/project.api';
 import { Button } from 'components/controls/Button';
 import { Container, Input } from './Settings.styled';

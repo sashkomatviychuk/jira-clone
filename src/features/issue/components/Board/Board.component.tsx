@@ -11,7 +11,7 @@ import {
   filterIssuesByStatus,
   isPositionChanged,
 } from 'app/issue/issue.service';
-import { IssueStatus } from 'app/issue/issue.interface';
+import { IssueStatus } from 'types/issue';
 
 const Board: FC = () => {
   const { filter, hasFilter } = useContext(FilterContext);

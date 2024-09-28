@@ -1,4 +1,4 @@
-import { Project, ProjectSettings } from 'app/project/project.interfaces';
+import { Project, ProjectSettings } from 'types/project';
 import { api } from 'shared/api';
 
 export const projectApi = api

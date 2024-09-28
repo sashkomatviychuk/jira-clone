@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useFormikContext } from 'formik';
 
-import { UpdateIssuePayload } from 'app/issue/issue.interface';
+import { UpdateIssuePayload } from 'types/issue';
 import Editor from 'components/controls/Editor';
 import { Container, Label, Preview } from './Description.styled';
 import { Button } from 'components/controls/Button';

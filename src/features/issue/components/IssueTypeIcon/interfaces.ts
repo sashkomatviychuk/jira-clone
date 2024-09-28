@@ -1,4 +1,4 @@
-import { IssueType } from 'app/issue/issue.interface';
+import { IssueType } from 'types/issue';
 
 export interface IssueTypeIconProps {
   type: IssueType;

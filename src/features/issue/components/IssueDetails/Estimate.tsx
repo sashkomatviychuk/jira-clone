@@ -3,7 +3,7 @@ import { FieldWrapper, Label } from './IssueDetails.styled';
 import { Input } from 'components/controls/Input';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
-import { UpdateIssuePayload } from 'app/issue/issue.interface';
+import { UpdateIssuePayload } from 'types/issue';
 import { isNumber } from 'lodash';
 import { isValidEstimate } from 'app/issue/issue.service';
 

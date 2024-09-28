@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FieldWrapper, Label } from '../IssueDetails.styled';
 import { getPriorityOptions } from 'app/issue/issue.service';
 import { useFormikContext } from 'formik';
-import { IssuePriority, UpdateIssuePayload } from 'app/issue/issue.interface';
+import { IssuePriority, UpdateIssuePayload } from 'types/issue';
 import Select from 'components/controls/Select';
 
 const Priority: FC = () => {
