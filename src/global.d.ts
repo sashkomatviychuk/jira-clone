@@ -1,9 +1,8 @@
 import 'styled-components';
 
-interface IPalette {
-  main: string;
-  contrastText: string;
-}
+declare type Optional<T> = T | undefined;
+
+declare type Nullable<T> = T | null;
 
 declare module 'styled-components' {
   export interface DefaultTheme {
