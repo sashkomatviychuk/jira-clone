@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Tooltip from 'rc-tooltip';
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as Logo } from 'resources/svg/logo.svg';
+import { ReactComponent as Logo } from './logo.svg';
 import { NavbarLeftStyled, ActionButtons, Bottom } from './NavbarLeft.styled';
 import { Button } from 'components/controls/Button';
 import Icon from 'components/common/Icon';

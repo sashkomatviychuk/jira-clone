@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'resources/theme/colors';
 
 export const EditorContainer = styled.div`
   margin-top: 10px;
@@ -13,7 +12,7 @@ export const EditorContainer = styled.div`
     border-radius: 0 0 4px 4px;
     border: 1px solid ${({ theme }) => theme.colors.gray[200]};
     border-top: none;
-    color: ${colors.textDarkest};
+    color: ${({ theme }) => theme.colors.text.dark};
     font-size: 13px;
   }
   .ql-editor {
