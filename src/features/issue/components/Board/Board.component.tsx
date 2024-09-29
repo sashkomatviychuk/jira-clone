@@ -1,17 +1,17 @@
-import { FC, useContext } from 'react';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-
-import { Lists } from './Board.styled';
-import List from './List.component';
 import { useGetIssuesQuery, useUpdateIssueStatusMutation } from 'features/issue/api';
-import { FilterContext } from 'features/project/contexts/Filters.context';
+import { BOARD_COLUMNS } from 'features/issue/issue.constants';
 import {
   calculateIssuePosition,
   filterIssuesByStatus,
   isPositionChanged,
 } from 'features/issue/issue.utils';
+import { FilterContext } from 'features/project/contexts/Filters.context';
+import { FC, useContext } from 'react';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { IssueStatus } from 'types/issue';
-import { BOARD_COLUMNS } from 'features/issue/issue.constants';
+
+import { Lists } from './Board.styled';
+import List from './List.component';
 
 const boardColumnsByStatus = Object.keys(BOARD_COLUMNS) as IssueStatus[];
 
@@ -37,11 +37,11 @@ const Board: FC = () => {
       <Lists>
         {boardColumnsByStatus.map((status) => (
           <List
+            isDragDisabled={hasFilter}
+            issues={filterIssuesByStatus(issues, status)}
             key={status}
             status={status}
-            issues={filterIssuesByStatus(issues, status)}
             totalCount={8}
-            isDragDisabled={hasFilter}
           />
         ))}
       </Lists>

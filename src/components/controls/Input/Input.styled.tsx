@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import TextareaAutoSize from 'react-textarea-autosize';
+import styled from 'styled-components';
 
 export const TextArea = styled(TextareaAutoSize)`
   outline: none;

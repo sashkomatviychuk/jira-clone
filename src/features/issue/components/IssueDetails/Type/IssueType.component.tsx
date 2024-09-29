@@ -1,14 +1,13 @@
-import { FC } from 'react';
-import { useFormikContext } from 'formik';
-import { useParams } from 'react-router-dom';
-
-import { UpdateIssuePayload } from 'types/issue';
-import Select, { IOption } from 'components/controls/Select';
-import { SingleValueProps, components } from 'react-select';
 import Avatar from 'components/common/Avatar';
 import Icon from 'components/common/Icon';
-import { useTheme } from 'styled-components';
+import Select, { IOption } from 'components/controls/Select';
 import { ISSUE_TYPES } from 'features/issue/issue.constants';
+import { useFormikContext } from 'formik';
+import { FC } from 'react';
+import { useParams } from 'react-router-dom';
+import { components, SingleValueProps } from 'react-select';
+import { useTheme } from 'styled-components';
+import { UpdateIssuePayload } from 'types/issue';
 
 interface TypeOption extends IOption {
   id: string;
@@ -17,8 +16,8 @@ interface TypeOption extends IOption {
 const SelectedOption: FC<SingleValueProps<TypeOption>> = ({ data, ...props }) => {
   return (
     <components.SingleValue {...props} data={data}>
-      {data.url && <Avatar size={20} name={data.label} url={data.url} />}
-      {data.icon && <Icon name={data.icon} color={data.color} size={16} top={0.5} left={-2} />}
+      {data.url && <Avatar name={data.label} size={20} url={data.url} />}
+      {data.icon && <Icon color={data.color} left={-2} name={data.icon} size={16} top={0.5} />}
       <span className="selected-label">
         {data.label}-{data.id}
       </span>
@@ -38,12 +37,12 @@ const Type: FC = () => {
 
   return (
     <Select
-      options={options as IOption[]}
-      defaultValue={formik.values.type}
-      onChange={(type) => formik.setFieldValue('type', type)}
       components={{
         SingleValue: SelectedOption as any,
       }}
+      defaultValue={formik.values.type}
+      onChange={(type) => formik.setFieldValue('type', type)}
+      options={options as IOption[]}
       styles={{
         singleValue: (styles) => ({
           ...styles,

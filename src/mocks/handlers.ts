@@ -1,16 +1,17 @@
 import { DefaultBodyType, PathParams, rest } from 'msw';
+import { Project } from 'types/project';
+
+import { project } from './data';
 import {
-  getIssue,
-  getProject,
-  getIssues,
-  deleteIssue,
-  updateIssue,
   createIssue,
   createIssueComment,
+  deleteIssue,
   deleteIssueComment,
+  getIssue,
+  getIssues,
+  getProject,
+  updateIssue,
 } from './helpers';
-import { project } from './data';
-import { Project } from 'types/project';
 import {
   CreateCommentPayload,
   CreateIssuePayload,

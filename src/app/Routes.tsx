@@ -1,25 +1,24 @@
-import { FC } from 'react';
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
-
+import TestPage from 'features/auth/Test.page';
 import BoardPage from 'features/issue/pages/Board.page';
+import EditIssuePage from 'features/issue/pages/EditIssue.page';
 import ProjectLayout from 'features/project/layouts/Project.layout';
 import SettingsPage from 'features/project/pages/Settings.page';
-import TestPage from 'features/auth/Test.page';
-import EditIssuePage from 'features/issue/pages/EditIssue.page';
+import { FC } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 const RoutesContainer: FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to={'/project'} />} />
-        <Route path="/project" element={<ProjectLayout />}>
-          <Route path="" element={<BoardPage />}>
-            <Route path="issue/:issueId" element={<EditIssuePage />} />
+        <Route element={<Navigate to={'/project'} />} path="/" />
+        <Route element={<ProjectLayout />} path="/project">
+          <Route element={<BoardPage />} path="">
+            <Route element={<EditIssuePage />} path="issue/:issueId" />
           </Route>
-          <Route path="settings" element={<SettingsPage />} />
+          <Route element={<SettingsPage />} path="settings" />
         </Route>
-        <Route path="/test" element={<TestPage />} />
-        <Route path="*" element={<div>Page not found</div>} />
+        <Route element={<TestPage />} path="/test" />
+        <Route element={<div>Page not found</div>} path="*" />
       </Routes>
     </BrowserRouter>
   );

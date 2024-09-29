@@ -1,12 +1,12 @@
-import { ProjectFilter } from 'types/project';
 import { api } from 'app/api';
+import { IOption } from 'components/controls/Select';
 import {
   CreateIssuePayload,
   Issue,
   UpdateIssuePayload,
   UpdateIssuePriorityPayload,
 } from 'types/issue';
-import { IOption } from 'components/controls/Select';
+import { ProjectFilter } from 'types/project';
 
 export const issuesApi = api
   .enhanceEndpoints({
@@ -21,7 +21,7 @@ export const issuesApi = api
       getIssues: build.query<Issue[], ProjectFilter>({
         query: (params) => ({ url: 'issues', params }),
         providesTags: (result = []) => [
-          ...result.map(({ id }) => ({ type: 'Issue', id } as const)),
+          ...result.map(({ id }) => ({ type: 'Issue', id }) as const),
           { type: 'Issue' as const, id: 'LIST' },
         ],
       }),

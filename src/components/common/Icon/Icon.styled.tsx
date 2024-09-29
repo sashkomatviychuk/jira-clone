@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { StyledIconProps } from 'components/common/Icon/interfaces';
+import styled from 'styled-components';
 
 export const Icon = styled.i<StyledIconProps>`
   display: inline-block;

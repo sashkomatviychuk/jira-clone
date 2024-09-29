@@ -1,9 +1,9 @@
-import { Issue, UpdateIssuePayload } from 'types/issue';
-import { IssueSchema } from 'features/issue/issue.schema';
 import { useUpdateIssueMutation } from 'features/issue/api';
+import { IssueSchema } from 'features/issue/issue.schema';
 import { FormikProvider } from 'formik';
 import { FC, PropsWithChildren } from 'react';
 import { useFormikAutoSave } from 'shared/hooks/form';
+import { Issue, UpdateIssuePayload } from 'types/issue';
 
 type IssueFormProps = {
   issue: Issue;

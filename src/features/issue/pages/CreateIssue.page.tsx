@@ -1,6 +1,6 @@
+import { Container, withModal } from 'components/common/Modal';
 import { FC } from 'react';
 
-import { Container, withModal } from 'components/common/Modal';
 import CreateIssue from '../components/CreateIssue/CreateIssue.component';
 
 const CreateIssuePage: FC = withModal('create-issue', ({ close }) => {

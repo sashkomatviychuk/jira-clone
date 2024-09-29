@@ -1,4 +1,5 @@
 import { IssuePriority, IssueType } from 'types/issue';
+
 import { CommentModel, IssueModel, ProjectModel, UserModel } from './models';
 
 export const createGenerator = () => {

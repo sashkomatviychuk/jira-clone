@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
-import { useFormikContext } from 'formik';
-
-import { UpdateIssuePayload } from 'types/issue';
-import Editor from 'components/controls/Editor';
-import { Container, Label, Preview } from './Description.styled';
-import { Button } from 'components/controls/Button';
 import { Row } from 'components/common/Row';
+import { Button } from 'components/controls/Button';
+import Editor from 'components/controls/Editor';
+import { useFormikContext } from 'formik';
+import { FC, useState } from 'react';
+import { UpdateIssuePayload } from 'types/issue';
+
 import { Space } from '../IssueDetails.styled';
+import { Container, Label, Preview } from './Description.styled';
 
 const Description: FC = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -18,8 +18,8 @@ const Description: FC = () => {
   if (!isEdit) {
     content = (
       <Preview
-        onClick={() => setIsEdit(true)}
         dangerouslySetInnerHTML={{ __html: formik.values.description || '' }}
+        onClick={() => setIsEdit(true)}
       />
     );
   } else {

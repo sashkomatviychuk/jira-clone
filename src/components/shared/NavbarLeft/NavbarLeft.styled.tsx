@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Button } from 'components/controls/Button';
+import styled from 'styled-components';
 
 export const NavbarLeftStyled = styled.div`
   position: fixed;

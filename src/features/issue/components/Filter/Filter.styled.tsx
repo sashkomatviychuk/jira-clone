@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Avatar from 'components/common/Avatar';
+import styled from 'styled-components';
 
 export const UserFilter = styled.div`
   display: inline-flex;

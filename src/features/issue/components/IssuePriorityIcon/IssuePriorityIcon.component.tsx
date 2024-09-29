@@ -1,7 +1,7 @@
-import { FC } from 'react';
 import Icon from 'components/common/Icon';
-import { IssuePriority } from 'types/issue';
 import { getPriorityIconProps } from 'features/issue/issue.utils';
+import { FC } from 'react';
+import { IssuePriority } from 'types/issue';
 
 interface IssuePriorityIconProps {
   type: IssuePriority;

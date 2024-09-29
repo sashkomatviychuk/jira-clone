@@ -1,9 +1,9 @@
-import { FC, memo } from 'react';
+import { useGetIssueQuery } from 'features/issue/api';
 import moment from 'moment';
+import { FC, memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Container, Row } from './Dates.styled';
-import { useGetIssueQuery } from 'features/issue/api';
 
 const Dates: FC = () => {
   const { issueId } = useParams();

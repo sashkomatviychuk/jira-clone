@@ -1,13 +1,13 @@
+import { Divider } from 'components/shared/Sidebar';
 import { FC, memo } from 'react';
 
-import { Right } from './IssueDetails.styled';
-import Dates from './Dates';
 import Status from '../Status';
+import Assignees from './Assignees';
+import Dates from './Dates';
+import Estimate from './Estimate';
+import { Right } from './IssueDetails.styled';
 import Priority from './Priority';
 import Reporter from './Reporter';
-import Assignees from './Assignees';
-import { Divider } from 'components/shared/Sidebar';
-import Estimate from './Estimate';
 
 const IssueAside: FC = () => {
   return (

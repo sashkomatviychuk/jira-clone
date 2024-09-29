@@ -1,8 +1,8 @@
-import { useEffect, useCallback, useState } from 'react';
-import { useFormik, FormikConfig, FormikValues } from 'formik';
+import { FormikConfig, FormikValues, useFormik } from 'formik';
 import debounce from 'lodash/debounce';
-import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import { useCallback, useEffect, useState } from 'react';
 import { usePrevious } from 'react-use';
 
 export const useFormikAutoSave = <TValues extends FormikValues>(

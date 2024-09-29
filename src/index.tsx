@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom/client';
 import App from 'app/App';
 import { worker } from 'mocks/browser';
+import ReactDOM from 'react-dom/client';
 
 worker.start();
 

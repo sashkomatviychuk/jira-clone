@@ -1,10 +1,9 @@
-import { FC, createContext, PropsWithChildren, useState } from 'react';
+import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import pickBy from 'lodash/pickBy';
-import isEmpty from 'lodash/isEmpty';
-
-import { ProjectFilter } from 'types/project';
+import { createContext, FC, PropsWithChildren, useState } from 'react';
 import { useDebounce } from 'shared/hooks/common';
+import { ProjectFilter } from 'types/project';
 
 type FilterContextProps = {
   hasFilter: boolean;

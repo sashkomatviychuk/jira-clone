@@ -1,24 +1,24 @@
+import Avatar from 'components/common/Avatar/Avatar.component';
 import Icon from 'components/common/Icon';
 import { FC } from 'react';
 import ReactSelect, {
-  OptionProps,
   components,
-  SingleValueProps,
-  Props,
   MultiValueGenericProps,
+  OptionProps,
+  Props,
+  SingleValueProps,
 } from 'react-select';
-import { withTheme, ThemeProps, DefaultTheme } from 'styled-components';
-// import find from 'lodash/find';
+import { DefaultTheme, ThemeProps, withTheme } from 'styled-components';
 
-import { IOption, SelectProps } from './interfaces';
-import Avatar from 'components/common/Avatar/Avatar.component';
 import { isSingleValue } from './helper';
+// import find from 'lodash/find';
+import { IOption, SelectProps } from './interfaces';
 
 export const Option: FC<OptionProps<IOption>> = ({ data, ...props }) => {
   return (
     <components.Option {...props} data={data}>
-      {data.url && <Avatar size={20} name={data.label} url={data.url} />}
-      {data.icon && <Icon name={data.icon} color={data.color} size={16} top={0.5} left={-4} />}
+      {data.url && <Avatar name={data.label} size={20} url={data.url} />}
+      {data.icon && <Icon color={data.color} left={-4} name={data.icon} size={16} top={0.5} />}
       <span className="label">{data.label}</span>
     </components.Option>
   );
@@ -27,8 +27,8 @@ export const Option: FC<OptionProps<IOption>> = ({ data, ...props }) => {
 export const SelectedOption: FC<SingleValueProps<IOption>> = ({ data, ...props }) => {
   return (
     <components.SingleValue {...props} data={data}>
-      {data.url && <Avatar size={20} name={data.label} url={data.url} />}
-      {data.icon && <Icon name={data.icon} color={data.color} size={16} top={0.5} left={-2} />}
+      {data.url && <Avatar name={data.label} size={20} url={data.url} />}
+      {data.icon && <Icon color={data.color} left={-2} name={data.icon} size={16} top={0.5} />}
       <span className="selected-label">{data.label}</span>
     </components.SingleValue>
   );
@@ -37,8 +37,8 @@ export const SelectedOption: FC<SingleValueProps<IOption>> = ({ data, ...props }
 export const MultiValueLabel: FC<MultiValueGenericProps<IOption>> = ({ data, ...props }) => {
   return (
     <components.MultiValueLabel {...props} data={data}>
-      {data.url && <Avatar size={16} name={data.label} url={data.url} />}
-      {data.icon && <Icon name={data.icon} color={data.color} size={13} top={0.5} left={-2} />}
+      {data.url && <Avatar name={data.label} size={16} url={data.url} />}
+      {data.icon && <Icon color={data.color} left={-2} name={data.icon} size={13} top={0.5} />}
       <span className="selected-label">{data.label}</span>
     </components.MultiValueLabel>
   );
@@ -52,6 +52,14 @@ const BaseSelect: FC<Props<IOption> & ThemeProps<DefaultTheme>> = ({
 }) => {
   return (
     <ReactSelect
+      components={{
+        DropdownIndicator: null,
+        IndicatorSeparator: null,
+        Option,
+        MultiValueLabel,
+        SingleValue: SelectedOption,
+        ...components,
+      }}
       styles={{
         control: (base, { isFocused }) => ({
           ...base,
@@ -134,14 +142,6 @@ const BaseSelect: FC<Props<IOption> & ThemeProps<DefaultTheme>> = ({
         }),
         ...styles,
       }}
-      components={{
-        DropdownIndicator: null,
-        IndicatorSeparator: null,
-        Option,
-        MultiValueLabel,
-        SingleValue: SelectedOption,
-        ...components,
-      }}
       {...props}
     />
   );
@@ -160,7 +160,6 @@ export default function Select<T extends unknown = unknown>({
 
   return (
     <SelectWithTheme
-      options={options}
       defaultValue={defaultOption}
       onChange={(e) => {
         if (!e) {
@@ -173,6 +172,7 @@ export default function Select<T extends unknown = unknown>({
           onChange(e.map((v) => v.value as T));
         }
       }}
+      options={options}
       {...props}
     />
   );

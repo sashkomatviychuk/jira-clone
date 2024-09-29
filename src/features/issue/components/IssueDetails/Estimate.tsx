@@ -1,11 +1,12 @@
-import { FC } from 'react';
-import { FieldWrapper, Label } from './IssueDetails.styled';
 import { Input } from 'components/controls/Input';
-import styled from 'styled-components';
-import { useFormikContext } from 'formik';
-import { UpdateIssuePayload } from 'types/issue';
-import { isNumber } from 'lodash';
 import { isValidEstimate } from 'features/issue/issue.utils';
+import { useFormikContext } from 'formik';
+import { isNumber } from 'lodash';
+import { FC } from 'react';
+import styled from 'styled-components';
+import { UpdateIssuePayload } from 'types/issue';
+
+import { FieldWrapper, Label } from './IssueDetails.styled';
 
 const EstimateInput = styled(Input)`
   width: 100%;
@@ -19,12 +20,12 @@ const Estimate: FC = () => {
     <FieldWrapper>
       <Label>Estimate</Label>
       <EstimateInput
-        value={value}
         onChange={(e) => {
           if (isValidEstimate(e.target.value)) {
             formik.setFieldValue('estimate', parseInt(e.target.value) || '');
           }
         }}
+        value={value}
       />
     </FieldWrapper>
   );

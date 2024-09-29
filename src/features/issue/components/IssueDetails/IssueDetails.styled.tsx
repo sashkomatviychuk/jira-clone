@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Label as DefaultLabel } from 'components/controls/Form';
+import styled from 'styled-components';
 
 export const IssueContainer = styled.div`
   display: flex;

@@ -1,9 +1,10 @@
-import { FC, useContext } from 'react';
-import { Column, Container, EmptyIssuesList, Issue, Type } from './SearchedIssues.styled';
 import { useGetIssuesQuery } from 'features/issue/api';
 import { FilterContext } from 'features/project/contexts/Filters.context';
-import IssueTypeIcon from '../IssueTypeIcon/IssueTypeIcon.component';
 import { isEmpty } from 'lodash';
+import { FC, useContext } from 'react';
+
+import IssueTypeIcon from '../IssueTypeIcon/IssueTypeIcon.component';
+import { Column, Container, EmptyIssuesList, Issue, Type } from './SearchedIssues.styled';
 
 const SearchedIssues: FC = () => {
   const { filter } = useContext(FilterContext);
@@ -16,8 +17,8 @@ const SearchedIssues: FC = () => {
     <Container>
       {noIssues && <EmptyIssuesList>No results</EmptyIssuesList>}
       {issues.map((issue) => (
-        <Issue to={`/project/issue/${issue.id}`} key={issue.id}>
-          <IssueTypeIcon type={issue.type} size={18} />
+        <Issue key={issue.id} to={`/project/issue/${issue.id}`}>
+          <IssueTypeIcon size={18} type={issue.type} />
           <Column>
             <span>{issue.title}</span>
             <Type>

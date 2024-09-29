@@ -1,5 +1,6 @@
-import { FC, PropsWithChildren, ComponentType } from 'react';
+import { ComponentType, FC, PropsWithChildren } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import { Overlay } from './Overlay.styled';
 
 type ModalProps = {

@@ -1,9 +1,9 @@
 {
-  "extends": ["react-app"],
-  "plugins": ["prettier", "react"],
+  "plugins": ["react", "prettier", "unused-imports", "simple-import-sort", "@typescript-eslint"],
+  "extends": ["react-app", "prettier", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "prettier/prettier": "error",
-    "no-console": "off",
+    "no-console": "warn",
     "no-duplicate-imports": "error",
     "eqeqeq": "error",
     "prefer-const": [
@@ -17,9 +17,14 @@
     "lines-between-class-members": "warn",
     "@typescript-eslint/no-unused-vars": "error",
     "no-unused-vars": "off",
-    "react-hooks/exhaustive-deps": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-redeclare": "error"
+    "@typescript-eslint/no-redeclare": "error",
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 2,
+    "react/jsx-sort-props": 2,
+    "unused-imports/no-unused-imports": 2,
+    "simple-import-sort/imports": 2,
+    "simple-import-sort/exports": 2
   }
 }

@@ -1,8 +1,9 @@
 import Select, { useGrayControlStyles } from 'components/controls/Select';
-import { components } from 'react-select';
-import { options } from './Category.utils';
 import { useFormikContext } from 'formik';
+import { components } from 'react-select';
 import { ProjectSettings } from 'types/project';
+
+import { options } from './Category.utils';
 
 export const Category = () => {
   const grayStyles = useGrayControlStyles();
@@ -12,14 +13,14 @@ export const Category = () => {
 
   return (
     <Select
-      isClearable={true}
-      placeholder={'Select category'}
-      options={options}
-      defaultValue={formik.values.category}
-      onChange={(category) => formik.setFieldValue('category', category)}
       components={{
         DropdownIndicator: components.DropdownIndicator,
       }}
+      defaultValue={formik.values.category}
+      isClearable={true}
+      onChange={(category) => formik.setFieldValue('category', category)}
+      options={options}
+      placeholder={'Select category'}
       styles={grayStyles}
     />
   );

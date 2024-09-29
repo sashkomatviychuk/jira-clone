@@ -1,15 +1,16 @@
-import { FC } from 'react';
-import { SelectWithTheme, IOption, isSingleValue } from 'components/controls/Select';
-import { OptionProps, components } from 'react-select';
-import styled from 'styled-components';
-import { FieldWrapper, Label } from '../IssueDetails/IssueDetails.styled';
-import { IssueStatus, UpdateIssuePayload } from 'types/issue';
-import { useFormikContext } from 'formik';
+import { IOption, isSingleValue, SelectWithTheme } from 'components/controls/Select';
 import {
-  ISSUE_STATUSES,
   ISSUE_STATUS_BG_COLORS,
   ISSUE_STATUS_COLORS,
+  ISSUE_STATUSES,
 } from 'features/issue/issue.constants';
+import { useFormikContext } from 'formik';
+import { FC } from 'react';
+import { components, OptionProps } from 'react-select';
+import styled from 'styled-components';
+import { IssueStatus, UpdateIssuePayload } from 'types/issue';
+
+import { FieldWrapper, Label } from '../IssueDetails/IssueDetails.styled';
 
 type OptionLabelProps = {
   status: IssueStatus;
@@ -29,7 +30,7 @@ const OptionLabel = styled.span<OptionLabelProps>`
 const Option: FC<OptionProps<IOption<IssueStatus>>> = ({ data, ...props }) => {
   return (
     <components.Option data={data} {...props}>
-      <OptionLabel status={data.value} color={data.color}>
+      <OptionLabel color={data.color} status={data.value}>
         {data.label}
       </OptionLabel>
     </components.Option>
@@ -45,15 +46,15 @@ const Status: FC = () => {
     <FieldWrapper>
       <Label>Status</Label>
       <SelectWithTheme
-        isSearchable={false}
+        components={{ DropdownIndicator: components.DropdownIndicator, Option: Option as any }}
         defaultValue={option}
-        options={ISSUE_STATUSES}
+        isSearchable={false}
         onChange={(option) => {
           if (isSingleValue(option)) {
             formik.setFieldValue('status', option!.value);
           }
         }}
-        components={{ DropdownIndicator: components.DropdownIndicator, Option: Option as any }}
+        options={ISSUE_STATUSES}
         styles={{
           control: (base) => ({
             ...base,

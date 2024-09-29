@@ -1,5 +1,5 @@
-import { Project, ProjectSettings } from 'types/project';
 import { api } from 'app/api';
+import { Project, ProjectSettings } from 'types/project';
 
 export const projectApi = api
   .enhanceEndpoints({

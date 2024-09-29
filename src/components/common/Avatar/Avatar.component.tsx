@@ -1,6 +1,7 @@
 import { FC } from 'react';
+
+import { Image, Letter } from './Avatar.styled';
 import { AvatarProps } from './interfaces';
-import { Letter, Image } from './Avatar.styled';
 
 const Avatar: FC<AvatarProps> = ({ url, ...props }) => {
   if (url) {

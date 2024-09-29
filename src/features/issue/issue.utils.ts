@@ -1,8 +1,8 @@
 import {
-  ISSUE_TYPE_COLORS,
-  ISSUE_TYPE_ICONS,
   ISSUE_PRIORITY_COLORS,
   ISSUE_PRIORITY_ICONS,
+  ISSUE_TYPE_COLORS,
+  ISSUE_TYPE_ICONS,
 } from 'features/issue/issue.constants';
 import { DropResult } from 'react-beautiful-dnd';
 import { Issue, IssuePriority, IssueStatus, IssueType } from 'types/issue';

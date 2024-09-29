@@ -8,7 +8,9 @@ export const HelpContentStyled = styled.div`
   width: 300px;
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.text.medium};
-  box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px, rgb(9 30 66 / 31%) 0px 0px;
+  box-shadow:
+    rgb(9 30 66 / 25%) 0px 4px 8px -2px,
+    rgb(9 30 66 / 31%) 0px 0px;
   border-radius: 3px;
   padding: 16px;
   font-size: 12px;

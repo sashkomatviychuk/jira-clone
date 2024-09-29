@@ -1,5 +1,5 @@
-import * as Yup from 'yup';
 import { IssuePriority, IssueType } from 'types/issue';
+import * as Yup from 'yup';
 
 export const IssueSchema = Yup.object().shape({
   title: Yup.string()
