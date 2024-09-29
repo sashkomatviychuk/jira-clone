@@ -149,7 +149,7 @@ const BaseSelect: FC<Props<IOption> & ThemeProps<DefaultTheme>> = ({
 
 export const SelectWithTheme = withTheme(BaseSelect);
 
-export default function Select<T extends unknown = unknown>({
+export default function Select<T = unknown>({
   options,
   onChange,
   defaultValue,

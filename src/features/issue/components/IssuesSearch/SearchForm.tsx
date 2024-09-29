@@ -7,7 +7,7 @@ const SearchForm: FC = () => {
 
   const handleSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.currentTarget.value),
-    []
+    [onSearchChange]
   );
 
   return (

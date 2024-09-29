@@ -82,22 +82,31 @@ const Filters: FC = () => {
     resetFilter,
   } = useContext(FilterContext);
 
-  const handleUserChange = useCallback((userIds: number[]) => {
-    onUsersChange(userIds);
-  }, []);
+  const handleUserChange = useCallback(
+    (userIds: number[]) => {
+      onUsersChange(userIds);
+    },
+    [onUsersChange]
+  );
 
   const handleSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.currentTarget.value),
-    []
+    [onSearchChange]
   );
 
-  const handleShowUserIssues = useCallback((value: boolean) => {
-    onShowUserIssueChange(value);
-  }, []);
+  const handleShowUserIssues = useCallback(
+    (value: boolean) => {
+      onShowUserIssueChange(value);
+    },
+    [onShowUserIssueChange]
+  );
 
-  const handleLastUpdated = useCallback((value: boolean) => {
-    onLastUpdatedChanged(value);
-  }, []);
+  const handleLastUpdated = useCallback(
+    (value: boolean) => {
+      onLastUpdatedChanged(value);
+    },
+    [onLastUpdatedChanged]
+  );
 
   return (
     <Row>
