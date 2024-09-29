@@ -13,9 +13,10 @@ import {
   Assignee,
 } from './Board.styled';
 import IssueTypeIcon from '../IssueTypeIcon/IssueTypeIcon.component';
-import { columnNames, sortIssuesByPosition } from 'app/issue/issue.service';
 import { Row } from 'components/common/Row';
 import IssuePriorityIcon from '../IssuePriorityIcon';
+import { BOARD_COLUMNS } from 'features/issue/issue.constants';
+import { sortIssuesByPosition } from 'features/issue/issue.utils';
 
 type ListProps = {
   status: IssueStatus;
@@ -76,7 +77,8 @@ export const List: FC<ListProps> = ({ status, issues, totalCount, isDragDisabled
         return (
           <Column ref={provided.innerRef} {...provided.droppableProps}>
             <Title>
-              {columnNames[status]} <span style={{ textTransform: 'lowercase' }}>{countInfo}</span>
+              {BOARD_COLUMNS[status]}{' '}
+              <span style={{ textTransform: 'lowercase' }}>{countInfo}</span>
             </Title>
             <IssuesContainer>
               {sorted.map((issue, index) => (

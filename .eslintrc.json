@@ -3,7 +3,7 @@
   "plugins": ["prettier", "react"],
   "rules": {
     "prettier/prettier": "error",
-    "no-console": "error",
+    "no-console": "off",
     "no-duplicate-imports": "error",
     "eqeqeq": "error",
     "prefer-const": [

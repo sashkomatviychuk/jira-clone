@@ -3,12 +3,12 @@ import { useFormikContext } from 'formik';
 import { useParams } from 'react-router-dom';
 
 import { UpdateIssuePayload } from 'types/issue';
-import { getTypeOptions } from 'app/issue/issue.service';
 import Select, { IOption } from 'components/controls/Select';
 import { SingleValueProps, components } from 'react-select';
 import Avatar from 'components/common/Avatar';
 import Icon from 'components/common/Icon';
 import { useTheme } from 'styled-components';
+import { ISSUE_TYPES } from 'features/issue/issue.constants';
 
 interface TypeOption extends IOption {
   id: string;
@@ -31,16 +31,16 @@ const Type: FC = () => {
   const formik = useFormikContext<UpdateIssuePayload>();
   const theme = useTheme();
 
-  const options = getTypeOptions().map((option) => ({
+  const options = ISSUE_TYPES.map((option) => ({
     ...option,
     id: issueId,
   }));
 
   return (
     <Select
-      options={options}
-      defaultValue={formik.values.type as any}
-      onChange={(priority) => formik.setFieldValue('type', priority)}
+      options={options as IOption[]}
+      defaultValue={formik.values.type}
+      onChange={(type) => formik.setFieldValue('type', type)}
       components={{
         SingleValue: SelectedOption as any,
       }}

@@ -6,7 +6,7 @@ import { Button } from 'components/controls/Button';
 import Icon from 'components/common/Icon';
 import { Row } from 'components/common/Row';
 import IssueType from '../Type';
-import { useDeleteIssueMutation } from 'app/issue/issues.api';
+import { useDeleteIssueMutation } from 'features/issue/api';
 import CopyButton from './Copy.button';
 
 const TopActions = () => {

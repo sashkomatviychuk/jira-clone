@@ -1,13 +1,10 @@
 import { FC } from 'react';
 import { IssueTypeIconProps } from './interfaces';
 import Icon from 'components/common/Icon';
-import { typeIcon, typeColors } from 'app/issue/issue.service';
+import { getTypeIconProps } from 'features/issue/issue.utils';
 
 const IssueTypeIcon: FC<IssueTypeIconProps> = ({ type, ...props }) => {
-  const iconName = typeIcon[type];
-  const color = typeColors[type];
-
-  return <Icon name={iconName} color={color} {...props} />;
+  return <Icon {...getTypeIconProps(type)} {...props} />;
 };
 
 export default IssueTypeIcon;

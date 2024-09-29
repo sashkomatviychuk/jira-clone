@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
 import { Column, Container, EmptyIssuesList, Issue, Type } from './SearchedIssues.styled';
-import { useGetIssuesQuery } from 'app/issue/issues.api';
+import { useGetIssuesQuery } from 'features/issue/api';
 import { FilterContext } from 'features/project/contexts/Filters.context';
 import IssueTypeIcon from '../IssueTypeIcon/IssueTypeIcon.component';
 import { isEmpty } from 'lodash';

@@ -15,11 +15,4 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 3 });
 export const api = createApi({
   baseQuery: baseQueryWithRetry,
   endpoints: () => ({}),
-  // tagTypes: ['Project', 'Issue', 'Comment'],
-});
-
-export const enhancedApi = api.enhanceEndpoints({
-  endpoints: () => ({
-    getPost: () => 'test',
-  }),
 });

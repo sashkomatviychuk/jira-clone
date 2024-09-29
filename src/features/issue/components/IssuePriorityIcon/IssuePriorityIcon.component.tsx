@@ -1,13 +1,17 @@
 import { FC } from 'react';
-import { IssuePriorityIconProps } from './interfaces';
 import Icon from 'components/common/Icon';
-import { priorityIcon, priorityColors } from 'app/issue/issue.service';
+import { IssuePriority } from 'types/issue';
+import { getPriorityIconProps } from 'features/issue/issue.utils';
+
+interface IssuePriorityIconProps {
+  type: IssuePriority;
+  size?: number;
+  top?: number;
+  left?: number;
+}
 
 const IssuePriorityIcon: FC<IssuePriorityIconProps> = ({ type, ...props }) => {
-  const iconName = priorityIcon[type];
-  const color = priorityColors[type];
-
-  return <Icon name={iconName} color={color} {...props} />;
+  return <Icon {...getPriorityIconProps(type)} {...props} />;
 };
 
 export default IssuePriorityIcon;

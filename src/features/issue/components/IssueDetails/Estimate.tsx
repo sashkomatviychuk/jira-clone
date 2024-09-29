@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useFormikContext } from 'formik';
 import { UpdateIssuePayload } from 'types/issue';
 import { isNumber } from 'lodash';
-import { isValidEstimate } from 'app/issue/issue.service';
+import { isValidEstimate } from 'features/issue/issue.utils';
 
 const EstimateInput = styled(Input)`
   width: 100%;

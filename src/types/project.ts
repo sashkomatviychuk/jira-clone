@@ -5,13 +5,13 @@ export type ProjectFilter = {
   lastUpdated: boolean;
 };
 
-export interface User {
+export type User = {
   id: number;
   name: string;
   avatarUrl?: string;
-}
+};
 
-export interface IssuePreview {
+export type IssuePreview = {
   id: number;
   title: string;
   description: string;
@@ -20,9 +20,9 @@ export interface IssuePreview {
   status: string;
   type: string;
   assignees: User[];
-}
+};
 
-export interface Project {
+export type Project = {
   id: number;
   title: string;
   category: string;
@@ -31,16 +31,16 @@ export interface Project {
   createdAt: Date;
   users: User[];
   issues: IssuePreview[];
-}
+};
 
-export interface IssuesFilter {
+export type IssuesFilter = {
   query?: string;
   assigneeIds?: number[];
-}
+};
 
-export interface ProjectSettings {
+export type ProjectSettings = {
   title: string;
   category: string;
   url: string;
   description: string;
-}
+};

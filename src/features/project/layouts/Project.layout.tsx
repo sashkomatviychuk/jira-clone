@@ -7,7 +7,7 @@ import { ProjectViewStyled } from '../components/ProjectView/ProjectView.styled'
 // import { Modal } from 'components/common/Modal';
 import CreateIssuePage from 'features/issue/pages/CreateIssue.page';
 import SearchIssuesPage from 'features/issue/pages/SearchIssues.page';
-import { useGetProjectQuery } from 'features/project/api/project.api';
+import { useGetProjectQuery } from 'features/project/api';
 
 const ProjectLayout: FC = () => {
   const { error, isLoading } = useGetProjectQuery();

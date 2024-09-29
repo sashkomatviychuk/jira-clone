@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Overlay, Container } from 'components/common/Modal';
 import { Button } from 'components/controls/Button';
 import IssueLoader from '../components/IssueLoader';
-import { useGetIssueQuery } from 'app/issue/issues.api';
+import { useGetIssueQuery } from 'features/issue/api';
 import IssueForm from '../components/IssueDetails/IssueForm';
 import TopActions from '../components/IssueDetails/TopActions';
 import { IssueContainer } from '../components/IssueDetails/IssueDetails.styled';

@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useParams } from 'react-router-dom';
 
 import { Container, Row } from './Dates.styled';
-import { useGetIssueQuery } from 'app/issue/issues.api';
+import { useGetIssueQuery } from 'features/issue/api';
 
 const Dates: FC = () => {
   const { issueId } = useParams();

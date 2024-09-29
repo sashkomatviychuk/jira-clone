@@ -4,8 +4,12 @@ import { OptionProps, components } from 'react-select';
 import styled from 'styled-components';
 import { FieldWrapper, Label } from '../IssueDetails/IssueDetails.styled';
 import { IssueStatus, UpdateIssuePayload } from 'types/issue';
-import { getStatusOptions, statusBgColors, statusColors } from 'app/issue/issue.service';
 import { useFormikContext } from 'formik';
+import {
+  ISSUE_STATUSES,
+  ISSUE_STATUS_BG_COLORS,
+  ISSUE_STATUS_COLORS,
+} from 'features/issue/issue.constants';
 
 type OptionLabelProps = {
   status: IssueStatus;
@@ -15,7 +19,7 @@ type OptionLabelProps = {
 const OptionLabel = styled.span<OptionLabelProps>`
   padding: 4px 10px;
   text-transform: uppercase;
-  background-color: ${({ status }) => statusBgColors[status]};
+  background-color: ${({ status }) => ISSUE_STATUS_BG_COLORS[status]};
   color: ${({ color }) => color};
   border-radius: 4px;
   font-size: 12px;
@@ -34,9 +38,8 @@ const Option: FC<OptionProps<IOption<IssueStatus>>> = ({ data, ...props }) => {
 
 const Status: FC = () => {
   const formik = useFormikContext<UpdateIssuePayload>();
-  const options = getStatusOptions();
   const value = formik.values.status as IssueStatus;
-  const option = options.find((o) => o.value === value);
+  const option = ISSUE_STATUSES.find((o) => o.value === value);
 
   return (
     <FieldWrapper>
@@ -44,7 +47,7 @@ const Status: FC = () => {
       <SelectWithTheme
         isSearchable={false}
         defaultValue={option}
-        options={options}
+        options={ISSUE_STATUSES}
         onChange={(option) => {
           if (isSingleValue(option)) {
             formik.setFieldValue('status', option!.value);
@@ -58,15 +61,15 @@ const Status: FC = () => {
             fontSize: '12px',
             border: 0,
             borderRadius: '4px',
-            background: statusBgColors[value],
-            color: statusColors[value],
+            background: ISSUE_STATUS_BG_COLORS[value],
+            color: ISSUE_STATUS_COLORS[value],
             boxShadow: 'none',
             textTransform: 'uppercase',
             fontWeight: 500,
             width: 'fit-content',
 
             ' .selected-label': {
-              color: statusColors[value],
+              color: ISSUE_STATUS_COLORS[value],
             },
 
             ':hover': {
@@ -88,9 +91,9 @@ const Status: FC = () => {
 
             div: {
               padding: '4px 8px 4px 4px',
-              color: statusColors[value],
+              color: ISSUE_STATUS_COLORS[value],
               ':hover': {
-                color: statusColors[value],
+                color: ISSUE_STATUS_COLORS[value],
               },
             },
           }),

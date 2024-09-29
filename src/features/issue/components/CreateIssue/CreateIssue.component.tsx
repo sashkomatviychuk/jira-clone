@@ -7,13 +7,13 @@ import { Description, Error, Label, Row } from 'components/controls/Form';
 import { Input } from './CreateIssue.styled';
 import Button from 'components/controls/Button';
 import { CreateIssuePayload, IssuePriority, IssueType } from 'types/issue';
-import { useCreateIssueMutation } from 'app/issue/issues.api';
+import { useCreateIssueMutation } from 'features/issue/api';
 import { Row as FlexRow } from 'components/common/Row';
 import Editor from 'components/controls/Editor';
-import { getPriorityOptions, getTypeOptions } from 'app/issue/issue.service';
-import { IssueSchema } from 'app/issue/issue.validator';
-import Select, { useGrayControlStyles } from 'components/controls/Select';
+import { IssueSchema } from 'features/issue/issue.schema';
+import Select, { IOption, useGrayControlStyles } from 'components/controls/Select';
 import UserSelect from '../UserSelect';
+import { ISSUE_PRIORITIES, ISSUE_TYPES } from 'features/issue/issue.constants';
 
 type CreateIssueProps = {
   handleClose: () => void;
@@ -46,7 +46,7 @@ const CreateIssue: FC<CreateIssueProps> = ({ handleClose }) => {
       <Row>
         <Label htmlFor="type">Issue type</Label>
         <Select
-          options={getTypeOptions()}
+          options={ISSUE_TYPES as IOption[]}
           defaultValue={formik.values.type as any}
           onChange={(priority) => formik.setFieldValue('type', priority)}
           styles={grayStyles}
@@ -97,7 +97,7 @@ const CreateIssue: FC<CreateIssueProps> = ({ handleClose }) => {
       <Row>
         <Label htmlFor="priority">Priority</Label>
         <Select
-          options={getPriorityOptions()}
+          options={ISSUE_PRIORITIES as IOption[]}
           defaultValue={formik.values.priority}
           onChange={(priority) => formik.setFieldValue('priority', priority)}
           styles={grayStyles}

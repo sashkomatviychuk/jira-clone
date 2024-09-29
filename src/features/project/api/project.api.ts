@@ -1,9 +1,9 @@
 import { Project, ProjectSettings } from 'types/project';
-import { api } from 'shared/api';
+import { api } from 'app/api';
 
 export const projectApi = api
   .enhanceEndpoints({
-    addTagTypes: ['Project', 'A'],
+    addTagTypes: ['Project'],
   })
   .injectEndpoints({
     endpoints: (build) => ({
