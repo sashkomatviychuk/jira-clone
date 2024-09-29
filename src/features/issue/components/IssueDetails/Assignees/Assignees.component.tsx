@@ -1,8 +1,9 @@
-import { FC } from 'react';
-import { FieldWrapper, Label } from '../IssueDetails.styled';
-import UserSelect from '../../UserSelect';
 import { useFormikContext } from 'formik';
-import { UpdateIssuePayload } from 'app/issue/issue.interface';
+import { FC } from 'react';
+import { UpdateIssuePayload } from 'types/issue';
+
+import UserSelect from '../../UserSelect';
+import { FieldWrapper, Label } from '../IssueDetails.styled';
 
 const Reporter: FC = () => {
   const formik = useFormikContext<UpdateIssuePayload>();
@@ -12,10 +13,10 @@ const Reporter: FC = () => {
       <Label>Assignees</Label>
       <UserSelect
         defaultValue={formik.values.assigneeIds}
+        isMulti
         onChange={(value) => {
           formik.setFieldValue('assigneeIds', value);
         }}
-        isMulti
       />
     </FieldWrapper>
   );

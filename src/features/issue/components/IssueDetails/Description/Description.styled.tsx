@@ -1,5 +1,5 @@
-import { Label as DefaultLabel } from 'components/controls/Form';
 import { Row as DefaultRow } from 'components/common/Row';
+import { Label as DefaultLabel } from 'components/controls/Form';
 import styled from 'styled-components';
 
 export const Container = styled.div`

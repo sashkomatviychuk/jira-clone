@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Input as BaseInput } from 'components/controls/Input';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   padding-top: 12px;

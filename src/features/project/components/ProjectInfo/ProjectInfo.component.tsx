@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
+
 import { ProjectInfoProps } from './interfaces';
-import { ProjectInfoStyled, AvatarContainer, Details, Name, Category } from './ProjectInfo.styled';
-import { ReactComponent as Avatar } from 'resources/svg/project-avatar.svg';
+import { ReactComponent as Avatar } from './project-avatar.svg';
+import { AvatarContainer, Category, Details, Name, ProjectInfoStyled } from './ProjectInfo.styled';
 
 const ProjectInfo: FC<ProjectInfoProps> = ({ name, category }) => {
   return (

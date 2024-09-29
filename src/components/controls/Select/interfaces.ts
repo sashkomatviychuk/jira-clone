@@ -1,7 +1,7 @@
 import { GroupBase, StylesConfig } from 'react-select';
 import { SelectComponents } from 'react-select/dist/declarations/src/components';
 
-export interface IOption<T extends unknown = unknown> {
+export interface IOption<T = unknown> {
   value: T;
   label: string;
   color?: string;
@@ -9,7 +9,7 @@ export interface IOption<T extends unknown = unknown> {
   url?: string;
 }
 
-export type SelectProps<TValue extends unknown> = {
+export type SelectProps<TValue> = {
   options: IOption[];
   onChange: (value: Nullable<TValue | TValue[]>) => void;
   defaultValue?: Nullable<TValue | TValue[]>;

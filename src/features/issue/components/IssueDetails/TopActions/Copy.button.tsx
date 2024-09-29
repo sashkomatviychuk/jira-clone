@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import Icon from 'components/common/Icon';
 import Button from 'components/controls/Button';
+import { useState } from 'react';
 
 const CopyButton = () => {
   const [copied, setCopied] = useState(false);
@@ -14,7 +14,7 @@ const CopyButton = () => {
 
   return (
     <Button className="link" onClick={handleCopyClick}>
-      <Icon name="link" size={18} top={1} left={-2} />
+      <Icon left={-2} name="link" size={18} top={1} />
       {copied ? 'Link Copied' : 'Copy link'}
     </Button>
   );

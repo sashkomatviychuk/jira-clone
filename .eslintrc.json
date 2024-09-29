@@ -1,25 +1,36 @@
 {
-  "extends": ["react-app"],
-  "plugins": ["prettier", "react"],
-  "rules": {
-    "prettier/prettier": "error",
-    "no-console": "error",
-    "no-duplicate-imports": "error",
-    "eqeqeq": "error",
-    "prefer-const": [
-      "error",
-      {
-        "destructuring": "any",
-        "ignoreReadBeforeAssign": false
+  "plugins": ["react", "prettier", "unused-imports", "simple-import-sort", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["react-app", "prettier", "plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "prettier/prettier": "error",
+        "no-console": "warn",
+        "no-duplicate-imports": "error",
+        "eqeqeq": "error",
+        "prefer-const": [
+          "error",
+          {
+            "destructuring": "any",
+            "ignoreReadBeforeAssign": false
+          }
+        ],
+        "prefer-template": "error",
+        "lines-between-class-members": "warn",
+        "@typescript-eslint/no-unused-vars": "error",
+        "no-unused-vars": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-redeclare": "error",
+        "react-hooks/rules-of-hooks": 2,
+        "react-hooks/exhaustive-deps": 2,
+        "react/jsx-sort-props": 2,
+        "unused-imports/no-unused-imports": 2,
+        "simple-import-sort/imports": 2,
+        "simple-import-sort/exports": 2
       }
-    ],
-    "prefer-template": "error",
-    "lines-between-class-members": "warn",
-    "@typescript-eslint/no-unused-vars": "error",
-    "no-unused-vars": "off",
-    "react-hooks/exhaustive-deps": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-redeclare": "error"
-  }
+    }
+  ]
 }

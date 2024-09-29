@@ -1,19 +1,19 @@
-import { FC } from 'react';
+import { Row as FlexRow } from 'components/common/Row';
+import Button from 'components/controls/Button';
+import Editor from 'components/controls/Editor';
+import { Description, Error, Label, Row } from 'components/controls/Form';
+import Select, { IOption, useGrayControlStyles } from 'components/controls/Select';
+import { useCreateIssueMutation } from 'features/issue/api';
+import { ISSUE_PRIORITIES, ISSUE_TYPES } from 'features/issue/issue.constants';
+import { IssueSchema } from 'features/issue/issue.schema';
 import { useFormik } from 'formik';
+import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { components } from 'react-select';
+import { CreateIssuePayload, IssuePriority, IssueType } from 'types/issue';
 
-import { Description, Error, Label, Row } from 'components/controls/Form';
-import { Input } from './CreateIssue.styled';
-import Button from 'components/controls/Button';
-import { CreateIssuePayload, IssuePriority, IssueType } from 'app/issue/issue.interface';
-import { useCreateIssueMutation } from 'app/issue/issues.api';
-import { Row as FlexRow } from 'components/common/Row';
-import Editor from 'components/controls/Editor';
-import { getPriorityOptions, getTypeOptions } from 'app/issue/issue.service';
-import { IssueSchema } from 'app/issue/issue.validator';
-import Select, { useGrayControlStyles } from 'components/controls/Select';
 import UserSelect from '../UserSelect';
+import { Input } from './CreateIssue.styled';
 
 type CreateIssueProps = {
   handleClose: () => void;
@@ -46,20 +46,20 @@ const CreateIssue: FC<CreateIssueProps> = ({ handleClose }) => {
       <Row>
         <Label htmlFor="type">Issue type</Label>
         <Select
-          options={getTypeOptions()}
-          defaultValue={formik.values.type as any}
-          onChange={(priority) => formik.setFieldValue('type', priority)}
-          styles={grayStyles}
           components={{
             DropdownIndicator: components.DropdownIndicator,
           }}
+          defaultValue={formik.values.type as any}
+          onChange={(priority) => formik.setFieldValue('type', priority)}
+          options={ISSUE_TYPES as IOption[]}
+          styles={grayStyles}
         />
         <Description>Start typing to get a list of possible matches.</Description>
         {<Error>{errors.type}</Error>}
       </Row>
       <Row>
         <Label htmlFor="title">Short Summary</Label>
-        <Input defaultValue={formik.values.title} onChange={formik.handleChange} name="title" />
+        <Input defaultValue={formik.values.title} name="title" onChange={formik.handleChange} />
         <Description>Concisely summarize the issue in one or two sentences</Description>
         {<Error>{errors.title}</Error>}
       </Row>
@@ -67,8 +67,8 @@ const CreateIssue: FC<CreateIssueProps> = ({ handleClose }) => {
         <Label htmlFor="description">Description</Label>
         <Editor
           defaultValue={formik.values.description}
-          value={formik.values.description}
           onChange={(html) => formik.setFieldValue('description', html)}
+          value={formik.values.description}
         />
         <Description>Describe the project in as much detail as you'd like</Description>
         {<Error></Error>}
@@ -78,8 +78,8 @@ const CreateIssue: FC<CreateIssueProps> = ({ handleClose }) => {
         <UserSelect
           defaultValue={formik.values.reporterId}
           onChange={(reporterId) => formik.setFieldValue('reporterId', reporterId)}
-          styles={grayStyles}
           placeholder="Select reporter..."
+          styles={grayStyles}
         />
         {<Error></Error>}
       </Row>
@@ -87,29 +87,29 @@ const CreateIssue: FC<CreateIssueProps> = ({ handleClose }) => {
         <Label htmlFor="assigneeIds">Assignees</Label>
         <UserSelect
           defaultValue={formik.values.assigneeIds}
+          isMulti
           onChange={(assigneeIds) => formik.setFieldValue('assigneeIds', assigneeIds)}
           placeholder="Select assignees..."
           styles={grayStyles}
-          isMulti
         />
         {<Error></Error>}
       </Row>
       <Row>
         <Label htmlFor="priority">Priority</Label>
         <Select
-          options={getPriorityOptions()}
-          defaultValue={formik.values.priority}
-          onChange={(priority) => formik.setFieldValue('priority', priority)}
-          styles={grayStyles}
           components={{
             DropdownIndicator: components.DropdownIndicator,
           }}
+          defaultValue={formik.values.priority}
+          onChange={(priority) => formik.setFieldValue('priority', priority)}
+          options={ISSUE_PRIORITIES as IOption[]}
+          styles={grayStyles}
         />
         {<Error>{errors.priority}</Error>}
       </Row>
       <Row>
         <FlexRow>
-          <Button disabled={isLoading || !isValid} className="primary" type="submit">
+          <Button className="primary" disabled={isLoading || !isValid} type="submit">
             Create Issue
           </Button>
           <Button className="link" onClick={handleClose}>

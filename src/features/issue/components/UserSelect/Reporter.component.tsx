@@ -1,9 +1,8 @@
-import { FC } from 'react';
-import get from 'lodash/get';
-import { GroupBase, StylesConfig, components } from 'react-select';
-
 import Select, { IOption } from 'components/controls/Select';
-import { useGetProjectQuery } from 'app/project/project.api';
+import { useGetProjectQuery } from 'features/project/api';
+import get from 'lodash/get';
+import { FC } from 'react';
+import { components, GroupBase, StylesConfig } from 'react-select';
 
 type UserSelectProps = {
   defaultValue?: Nullable<number | number[]>;
@@ -30,16 +29,16 @@ const UserSelect: FC<UserSelectProps> = ({
 
   return (
     <Select<number>
-      defaultValue={defaultValue}
-      options={users}
-      placeholder={placeholder}
-      onChange={onChange}
-      styles={styles}
       components={{
         DropdownIndicator: components.DropdownIndicator,
       }}
-      isMulti={isMulti}
+      defaultValue={defaultValue}
       isClearable
+      isMulti={isMulti}
+      onChange={onChange}
+      options={users}
+      placeholder={placeholder}
+      styles={styles}
     />
   );
 };

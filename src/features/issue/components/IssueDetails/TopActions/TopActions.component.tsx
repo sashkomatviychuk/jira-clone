@@ -1,13 +1,13 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { memo } from 'react';
-
-import { Container } from './TopActions.styled';
-import { Button } from 'components/controls/Button';
 import Icon from 'components/common/Icon';
 import { Row } from 'components/common/Row';
+import { Button } from 'components/controls/Button';
+import { useDeleteIssueMutation } from 'features/issue/api';
+import { memo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import IssueType from '../Type';
-import { useDeleteIssueMutation } from 'app/issue/issues.api';
 import CopyButton from './Copy.button';
+import { Container } from './TopActions.styled';
 
 const TopActions = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const TopActions = () => {
       <IssueType />
       <Row>
         <Button className="link">
-          <Icon name="feedback" size={18} top={1} left={-2} />
+          <Icon left={-2} name="feedback" size={18} top={1} />
           Give feedback
         </Button>
         <CopyButton />

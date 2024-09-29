@@ -1,9 +1,13 @@
-import { IssuePriority, IssueType } from 'app/issue/issue.interface';
+import { IssuePriority, IssueType } from 'types/issue';
+
 import { CommentModel, IssueModel, ProjectModel, UserModel } from './models';
 
-let currentId = 1;
+export const createGenerator = () => {
+  let currentId = 1;
+  return () => currentId++;
+};
 
-export const nextId = (): number => currentId++;
+export const nextId = createGenerator();
 
 export const users: UserModel[] = [
   {

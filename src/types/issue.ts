@@ -1,5 +1,6 @@
-import { User } from 'app/project/project.interfaces';
-import { Comment } from 'app/comment/comment.interfaces';
+import { Comment } from 'types/comment';
+
+type User = any; // todo replace with read User type
 
 export enum IssueType {
   bug = 'bug',
@@ -21,16 +22,16 @@ export enum IssueStatus {
   done = 'done',
 }
 
-export interface CreateIssuePayload {
+export type CreateIssuePayload = {
   title: string;
   description: string;
   priority: IssuePriority;
   type: IssueType;
   assigneeIds: number[];
   reporterId: Nullable<number>;
-}
+};
 
-export interface Issue {
+export type Issue = {
   id: number;
   title: string;
   description: string;
@@ -47,9 +48,9 @@ export interface Issue {
   assignees: User[];
   comments: Comment[];
   position: number;
-}
+};
 
-export interface UpdateIssuePayload {
+export type UpdateIssuePayload = {
   title?: string;
   description?: string;
   priority?: string;
@@ -59,9 +60,9 @@ export interface UpdateIssuePayload {
   status?: string;
   timeSpent?: number;
   estimate?: Nullable<number>;
-}
+};
 
-export interface UpdateIssuePriorityPayload {
+export type UpdateIssuePriorityPayload = {
   status: IssueStatus;
   position: number;
-}
+};

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import Avatar from 'components/common/Avatar';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Lists = styled.div`
   display: flex;

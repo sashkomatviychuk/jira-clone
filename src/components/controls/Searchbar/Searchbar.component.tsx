@@ -1,6 +1,7 @@
-import { FC, ChangeEvent, memo } from 'react';
-import { Container, SearchInput } from './Searchbar.styled';
 import Icon from 'components/common/Icon';
+import { ChangeEvent, FC, memo } from 'react';
+
+import { Container, SearchInput } from './Searchbar.styled';
 
 type SearchbarProps = {
   value?: string;
@@ -11,7 +12,7 @@ type SearchbarProps = {
 const Searchbar: FC<SearchbarProps> = (props) => {
   return (
     <Container className="search-container">
-      <Icon name="search" size={14} top={8} left={8} />
+      <Icon left={8} name="search" size={14} top={8} />
       <SearchInput className="search-input" {...props} />
     </Container>
   );

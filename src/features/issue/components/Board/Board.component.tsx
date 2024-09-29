@@ -1,17 +1,19 @@
-import { FC, useContext } from 'react';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-
-import { Lists } from './Board.styled';
-import List from './List.component';
-import { useGetIssuesQuery, useUpdateIssueStatusMutation } from 'app/issue/issues.api';
-import { FilterContext } from 'features/project/contexts/Filters.context';
+import { useGetIssuesQuery, useUpdateIssueStatusMutation } from 'features/issue/api';
+import { BOARD_COLUMNS } from 'features/issue/issue.constants';
 import {
-  BOARD_COLUMNS,
   calculateIssuePosition,
   filterIssuesByStatus,
   isPositionChanged,
-} from 'app/issue/issue.service';
-import { IssueStatus } from 'app/issue/issue.interface';
+} from 'features/issue/issue.utils';
+import { FilterContext } from 'features/project/contexts/Filters.context';
+import { FC, useContext } from 'react';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { IssueStatus } from 'types/issue';
+
+import { Lists } from './Board.styled';
+import List from './List.component';
+
+const boardColumnsByStatus = Object.keys(BOARD_COLUMNS) as IssueStatus[];
 
 const Board: FC = () => {
   const { filter, hasFilter } = useContext(FilterContext);
@@ -33,13 +35,13 @@ const Board: FC = () => {
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Lists>
-        {BOARD_COLUMNS.map((status) => (
+        {boardColumnsByStatus.map((status) => (
           <List
+            isDragDisabled={hasFilter}
+            issues={filterIssuesByStatus(issues, status)}
             key={status}
             status={status}
-            issues={filterIssuesByStatus(issues, status)}
             totalCount={8}
-            isDragDisabled={hasFilter}
           />
         ))}
       </Lists>

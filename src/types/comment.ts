@@ -1,20 +1,20 @@
-import { User } from 'app/project/project.interfaces';
+type User = any; // todo replace with read User type
 
-export interface Comment {
+export type Comment = {
   id: number;
   body: string;
   userId: number;
   user: User;
   createdAt: Date;
-}
+};
 
-export interface CreateCommentPayload {
+export type CreateCommentPayload = {
   issueId: number;
   userId: number;
   body: string;
-}
+};
 
-export interface DeleteCommentPayload {
+export type DeleteCommentPayload = {
   issueId: number;
   commentId: number;
-}
+};

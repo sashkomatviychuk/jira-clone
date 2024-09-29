@@ -1,16 +1,16 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Container, Overlay } from 'components/common/Modal';
+import { Button } from 'components/controls/Button';
+import { useGetIssueQuery } from 'features/issue/api';
 import { FC, PropsWithChildren } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Overlay, Container } from 'components/common/Modal';
-import { Button } from 'components/controls/Button';
-import IssueLoader from '../components/IssueLoader';
-import { useGetIssueQuery } from 'app/issue/issues.api';
-import IssueForm from '../components/IssueDetails/IssueForm';
-import TopActions from '../components/IssueDetails/TopActions';
-import { IssueContainer } from '../components/IssueDetails/IssueDetails.styled';
-import IssueMain from '../components/IssueDetails/IssueMain';
 import IssueAside from '../components/IssueDetails/IssueAside';
+import { IssueContainer } from '../components/IssueDetails/IssueDetails.styled';
+import IssueForm from '../components/IssueDetails/IssueForm';
+import IssueMain from '../components/IssueDetails/IssueMain';
+import TopActions from '../components/IssueDetails/TopActions';
+import IssueLoader from '../components/IssueLoader';
 
 const Content = styled(Container)`
   width: 988px;

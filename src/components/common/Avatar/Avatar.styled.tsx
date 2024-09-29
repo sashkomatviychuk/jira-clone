@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { ImageProps, LetterProps, AvatarBorderProps } from './interfaces';
+
+import { AvatarBorderProps, ImageProps, LetterProps } from './interfaces';
 
 export const Image = styled.div<ImageProps>`
   display: inline-block;

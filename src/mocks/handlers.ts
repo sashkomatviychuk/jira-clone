@@ -1,16 +1,17 @@
 import { DefaultBodyType, PathParams, rest } from 'msw';
+import { Project } from 'types/project';
+
+import { project } from './data';
 import {
-  getIssue,
-  getProject,
-  getIssues,
-  deleteIssue,
-  updateIssue,
   createIssue,
   createIssueComment,
+  deleteIssue,
   deleteIssueComment,
+  getIssue,
+  getIssues,
+  getProject,
+  updateIssue,
 } from './helpers';
-import { project } from './data';
-import { Project } from 'app/project/project.interfaces';
 import {
   CreateCommentPayload,
   CreateIssuePayload,
@@ -21,11 +22,11 @@ import {
 
 export const handlers = [
   rest.get('/api/issues', (req, res, ctx) => {
-    const userIds = req.url.searchParams.get('userIds');
+    const assigneeIds = req.url.searchParams.getAll('userIds').map((v) => parseInt(v));
 
     const filter: IssuesFilter = {
       query: req.url.searchParams.get('search') || '',
-      assigneeIds: userIds ? userIds.split(',').map((v) => parseInt(v)) : [],
+      assigneeIds,
     };
 
     return res(ctx.json(getIssues(filter)));

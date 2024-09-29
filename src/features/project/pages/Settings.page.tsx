@@ -1,8 +1,8 @@
+import Breadcrumbs from 'components/shared/Breadcrumbs';
+import { useGetProjectQuery } from 'features/project/api';
 import { FC } from 'react';
 
-import Breadcrumbs from 'components/shared/Breadcrumbs';
 import ProjectHeader from '../components/ProjectHeader/ProjectHeader.component';
-import { useGetProjectQuery } from 'app/project/project.api';
 import Settings from '../components/Settings';
 
 const SettingsPage: FC = () => {

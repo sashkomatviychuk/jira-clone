@@ -1,10 +1,11 @@
-import { FC, memo } from 'react';
-import { Left, Space } from './IssueDetails.styled';
+import { Error } from 'components/controls/Form';
 import { useFormikContext } from 'formik';
 import { UpdateIssuePayload } from 'mocks/models';
-import Title from './Title';
+import { FC, memo } from 'react';
+
 import Description from './Description';
-import { Error } from 'components/controls/Form';
+import { Left, Space } from './IssueDetails.styled';
+import Title from './Title';
 
 const IssueMain: FC = () => {
   const formik = useFormikContext<UpdateIssuePayload>();
@@ -12,14 +13,14 @@ const IssueMain: FC = () => {
   return (
     <Left>
       <Title
-        value={formik.values.title}
+        minRows={1}
         onChange={(e) => formik.setFieldValue('title', e.target.value)}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             event.currentTarget.blur();
           }
         }}
-        minRows={1}
+        value={formik.values.title}
       />
       {formik.errors.title && <Error>{formik.errors.title}</Error>}
       <Space />

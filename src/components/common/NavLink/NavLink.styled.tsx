@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Link as ReactLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const NavLinkStyled = styled(ReactLink)`
   position: relative;

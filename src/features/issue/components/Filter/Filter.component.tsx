@@ -1,16 +1,16 @@
-import { FC, memo, useCallback, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import xor from 'lodash/xor';
-import get from 'lodash/get';
-
+import { AvatarBorder } from 'components/common/Avatar';
 import { Row } from 'components/common/Row';
 import { Button } from 'components/controls/Button';
 import Searchbar from 'components/controls/Searchbar';
-import { User } from 'app/project/project.interfaces';
+import { useGetProjectQuery } from 'features/project/api';
 import { FilterContext } from 'features/project/contexts/Filters.context';
-import { AvatarBorder } from 'components/common/Avatar';
+import get from 'lodash/get';
+import xor from 'lodash/xor';
+import { FC, memo, useCallback, useContext, useEffect, useState } from 'react';
+import { User } from 'types/project';
+
 import { ClearFilters, User as UserStyled, UserFilter as UserFilterStyled } from './Filter.styled';
-import { useGetProjectQuery } from 'app/project/project.api';
 
 type UserFilterProps = {
   value?: number[];
@@ -30,17 +30,17 @@ const UserFilter: FC<UserFilterProps> = memo(({ value, onChange }) => {
   return (
     <UserFilterStyled>
       {users.map((user) => (
-        <AvatarBorder key={user.id} isActive={userIds.includes(user.id)}>
+        <AvatarBorder isActive={userIds.includes(user.id)} key={user.id}>
           <UserStyled
             name={user.name}
-            size={26}
-            url={user.avatarUrl}
             onClick={() => {
               const newUserIds = xor(userIds, [user.id]);
 
               setUserIds(newUserIds);
               onChange(newUserIds);
             }}
+            size={26}
+            url={user.avatarUrl}
           />
         </AvatarBorder>
       ))}
@@ -82,29 +82,38 @@ const Filters: FC = () => {
     resetFilter,
   } = useContext(FilterContext);
 
-  const handleUserChange = useCallback((userIds: number[]) => {
-    onUsersChange(userIds);
-  }, []);
+  const handleUserChange = useCallback(
+    (userIds: number[]) => {
+      onUsersChange(userIds);
+    },
+    [onUsersChange]
+  );
 
   const handleSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.currentTarget.value),
-    []
+    [onSearchChange]
   );
 
-  const handleShowUserIssues = useCallback((value: boolean) => {
-    onShowUserIssueChange(value);
-  }, []);
+  const handleShowUserIssues = useCallback(
+    (value: boolean) => {
+      onShowUserIssueChange(value);
+    },
+    [onShowUserIssueChange]
+  );
 
-  const handleLastUpdated = useCallback((value: boolean) => {
-    onLastUpdatedChanged(value);
-  }, []);
+  const handleLastUpdated = useCallback(
+    (value: boolean) => {
+      onLastUpdatedChanged(value);
+    },
+    [onLastUpdatedChanged]
+  );
 
   return (
     <Row>
-      <Searchbar value={innerFilter.search} onChange={handleSearch} />
-      <UserFilter value={innerFilter.userIds} onChange={handleUserChange} />
-      <UserIssuesFilter value={innerFilter.showUserIssues} onChange={handleShowUserIssues} />
-      <LastUpdatedFilter value={innerFilter.lastUpdated} onChange={handleLastUpdated} />
+      <Searchbar onChange={handleSearch} value={innerFilter.search} />
+      <UserFilter onChange={handleUserChange} value={innerFilter.userIds} />
+      <UserIssuesFilter onChange={handleShowUserIssues} value={innerFilter.showUserIssues} />
+      <LastUpdatedFilter onChange={handleLastUpdated} value={innerFilter.lastUpdated} />
       {hasFilter && <ClearFilters onClick={resetFilter}>Clear all</ClearFilters>}
     </Row>
   );

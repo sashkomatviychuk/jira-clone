@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Card } from 'components/common/Card';
+import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: absolute;

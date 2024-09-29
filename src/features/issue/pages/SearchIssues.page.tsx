@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import styled from 'styled-components';
-import ClickAwayListener from 'react-click-away-listener';
-
-import { Button } from 'components/controls/Button';
-import { Container, withModal } from 'components/common/Modal';
 import Icon from 'components/common/Icon';
+import { Container, withModal } from 'components/common/Modal';
 import { Row } from 'components/common/Row';
-import { FiltersProvider } from '../../project/contexts/Filters.context';
-import SearchForm from '../../issue/components/IssuesSearch/SearchForm';
+import { Button } from 'components/controls/Button';
+import { FC } from 'react';
+import ClickAwayListener from 'react-click-away-listener';
+import styled from 'styled-components';
+
 import SearchedIssues from '../../issue/components/IssuesSearch/SearchedIssues';
+import SearchForm from '../../issue/components/IssuesSearch/SearchForm';
+import { FiltersProvider } from '../../project/contexts/Filters.context';
 
 const CloseButton = styled(Button)`
   border-radius: 3px;

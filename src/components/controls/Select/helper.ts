@@ -1,6 +1,7 @@
 import { GroupBase, MultiValue, SingleValue, StylesConfig } from 'react-select';
-import { IOption } from './interfaces';
 import { useTheme } from 'styled-components';
+
+import { IOption } from './interfaces';
 
 export const isSingleValue = (
   val: SingleValue<IOption> | MultiValue<IOption>
