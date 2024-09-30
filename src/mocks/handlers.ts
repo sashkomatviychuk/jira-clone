@@ -1,7 +1,7 @@
 import { DefaultBodyType, delay, http, HttpResponse, PathParams } from 'msw';
 import { Project } from 'types/project';
 
-import { project } from './data';
+import { projectEntry } from './data';
 import {
   createIssue,
   createIssueComment,
@@ -98,7 +98,7 @@ export const handlers = [
   http.put<PathParams, UpdateProjectPayload, Project>('/api/project', async ({ request }) => {
     const data = await request.json();
 
-    Object.assign(project, data);
+    Object.assign(projectEntry, data);
 
     await delay(300);
 

@@ -3,7 +3,7 @@ import { Comment } from 'types/comment';
 import { Issue } from 'types/issue';
 import { Project, User } from 'types/project';
 
-import { comments, issues, nextId, project, users } from './data';
+import { commentsDb, issuesDb, nextId, projectEntry, usersDb } from './data';
 import {
   CommentModel,
   CreateCommentPayload,
@@ -48,67 +48,67 @@ export const updateById = <T extends ID>(
 };
 
 export const getProject = (): Project => {
-  const _issues = findByIds(issues, project.issueIds);
+  const issues = findByIds(issuesDb, projectEntry.issueIds).map((issue) => ({
+    ...issue,
+    assignees: findByIds(usersDb, issue.assigneeIds),
+  }));
 
   return {
-    ...project,
-    users: findByIds(users, project.userIds),
-    issues: _issues.map((issue) => ({
-      ...issue,
-      assignees: findByIds(users, issue.assigneeIds),
-    })),
+    ...projectEntry,
+    issues,
+    users: findByIds(usersDb, projectEntry.userIds),
   };
 };
 
 export const getIssues = ({ query, assigneeIds }: IssuesFilter): Issue[] => {
-  let _issues = issues;
+  let issues = issuesDb;
 
   if (query) {
     const re = new RegExp(query, 'gi');
-    _issues = _issues.filter((issue) => re.test(issue.title));
+    issues = issues.filter((issue) => re.test(issue.title));
   }
 
   if (assigneeIds?.length) {
-    _issues = _issues.filter((issue) => intersection(issue.assigneeIds, assigneeIds).length > 0);
+    issues = issues.filter((issue) => intersection(issue.assigneeIds, assigneeIds).length > 0);
   }
 
-  return _issues.map((issue) => {
-    const _comments = findByIds(comments, issue.commetIds);
+  return issues.map((issue) => {
+    const comments = findByIds(commentsDb, issue.commetIds).map((comment) => ({
+      ...comment,
+      user: findById(usersDb, comment.userId) as User,
+    }));
 
     return {
       ...issue,
-      assignees: findByIds(users, issue.assigneeIds),
-      reporter: issue.reporterId ? (findById(users, issue.reporterId) as User) : null,
-      comments: _comments.map((comment) => ({
-        ...comment,
-        user: findById(users, comment.userId) as User,
-      })),
+      comments,
+      assignees: findByIds(usersDb, issue.assigneeIds),
+      reporter: issue.reporterId ? (findById(usersDb, issue.reporterId) as User) : null,
     };
   });
 };
 
 export const getIssue = (id: number): Optional<Issue> => {
-  const issue = findById(issues, id);
+  const issue = findById(issuesDb, id);
 
   if (!issue) {
     return;
   }
 
-  const _comments = findByIds(comments, issue.commetIds);
+  const comments = findByIds(commentsDb, issue.commetIds).map((comment) => ({
+    ...comment,
+    user: findById(usersDb, comment.userId) as User,
+  }));
 
   return {
     ...issue,
-    assignees: findByIds(users, issue.assigneeIds),
-    reporter: issue.reporterId ? (findById(users, issue.reporterId) as User) : null,
-    comments: _comments.map((comment) => ({
-      ...comment,
-      user: findById(users, comment.userId) as User,
-    })),
+    comments,
+    assignees: findByIds(usersDb, issue.assigneeIds),
+    reporter: issue.reporterId ? (findById(usersDb, issue.reporterId) as User) : null,
   };
 };
 
 export const createIssue = (payload: CreateIssuePayload): Issue => {
-  const lastIssue = issues
+  const lastIssue = issuesDb
     .filter((issue) => issue.status === 'todo')
     .sort((a, b) => b.position - a.position)[0];
 
@@ -124,18 +124,18 @@ export const createIssue = (payload: CreateIssuePayload): Issue => {
     position: lastIssue ? lastIssue.position + 1 : 1,
   };
 
-  issues.push(issue);
+  issuesDb.push(issue);
 
   return {
     ...issue,
-    assignees: findByIds(users, issue.assigneeIds),
-    reporter: issue.reporterId ? (findById(users, issue.reporterId) as User) : null,
+    assignees: findByIds(usersDb, issue.assigneeIds),
+    reporter: issue.reporterId ? (findById(usersDb, issue.reporterId) as User) : null,
     comments: [],
   };
 };
 
 export const updateIssue = (id: number, payload: UpdateIssuePayload): Optional<Issue> => {
-  const issue = findById(issues, id);
+  const issue = findById(issuesDb, id);
 
   if (!issue) {
     return;
@@ -143,33 +143,33 @@ export const updateIssue = (id: number, payload: UpdateIssuePayload): Optional<I
 
   Object.assign(issue, { ...payload, updatedAt: new Date() });
 
-  const _comments = findByIds(comments, issue.commetIds);
+  const comments = findByIds(commentsDb, issue.commetIds).map((comment) => ({
+    ...comment,
+    user: findById(usersDb, comment.userId) as User,
+  }));
 
   return {
     ...issue,
-    assignees: findByIds(users, issue.assigneeIds),
-    reporter: issue.reporterId ? (findById(users, issue.reporterId) as User) : null,
-    comments: _comments.map((comment) => ({
-      ...comment,
-      user: findById(users, comment.userId) as User,
-    })),
+    comments,
+    assignees: findByIds(usersDb, issue.assigneeIds),
+    reporter: issue.reporterId ? (findById(usersDb, issue.reporterId) as User) : null,
   };
 };
 
 export const deleteIssue = (id: number): boolean => {
-  const idx = findIndexById(issues, id);
+  const idx = findIndexById(issuesDb, id);
 
-  if (idx === -1) {
+  if (idx < 0) {
     return false;
   }
 
-  issues.splice(idx, 1);
+  issuesDb.splice(idx, 1);
 
   return true;
 };
 
 export const createIssueComment = (payload: CreateCommentPayload): Optional<Comment> => {
-  const issue = findById(issues, payload.issueId);
+  const issue = findById(issuesDb, payload.issueId);
 
   if (!issue) {
     return;
@@ -182,15 +182,15 @@ export const createIssueComment = (payload: CreateCommentPayload): Optional<Comm
     createdAt: new Date(),
   };
 
-  comments.push(comment);
+  commentsDb.push(comment);
 
   issue.commetIds.push(comment.id);
 
-  return { ...comment, user: findById(users, comment.userId) as User };
+  return { ...comment, user: findById(usersDb, comment.userId) as User };
 };
 
 export const deleteIssueComment = ({ issueId, commentId }: DeleteCommentPayload): boolean => {
-  const issue = findById(issues, issueId);
+  const issue = findById(issuesDb, issueId);
 
   if (!issue) {
     return false;
@@ -198,13 +198,13 @@ export const deleteIssueComment = ({ issueId, commentId }: DeleteCommentPayload)
 
   issue.commetIds = issue.commetIds.filter((issueCommentId) => issueCommentId !== commentId);
 
-  const idx = findIndexById(comments, commentId);
+  const idx = findIndexById(commentsDb, commentId);
 
-  if (idx === -1) {
+  if (idx < 0) {
     return false;
   }
 
-  comments.splice(idx, 1);
+  commentsDb.splice(idx, 1);
 
   return true;
 };

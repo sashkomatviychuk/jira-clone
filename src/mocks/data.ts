@@ -9,7 +9,7 @@ export const createGenerator = () => {
 
 export const nextId = createGenerator();
 
-export const users: UserModel[] = [
+export const usersDb: UserModel[] = [
   {
     id: 1,
     name: 'John Done',
@@ -27,7 +27,7 @@ export const users: UserModel[] = [
   },
 ];
 
-export const comments: CommentModel[] = [
+export const commentsDb: CommentModel[] = [
   {
     id: 1,
     body: 'First comment. Great app!',
@@ -36,7 +36,7 @@ export const comments: CommentModel[] = [
   },
 ];
 
-export const issues: IssueModel[] = [
+export const issuesDb: IssueModel[] = [
   {
     id: 3746,
     title: 'You can use rich text with images in issue descriptions',
@@ -135,7 +135,7 @@ export const issues: IssueModel[] = [
   },
 ];
 
-export const project: ProjectModel = {
+export const projectEntry: ProjectModel = {
   id: nextId(),
   title: 'singularity 1.0',
   description: 'Plan, track, and manage your agile and software development projects',
