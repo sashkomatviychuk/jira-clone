@@ -3,7 +3,7 @@
   "parser": "@typescript-eslint/parser",
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["*.ts", "*.tsx"],
       "extends": ["react-app", "prettier", "plugin:@typescript-eslint/recommended"],
       "rules": {
         "prettier/prettier": "error",
