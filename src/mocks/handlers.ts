@@ -1,4 +1,4 @@
-import { DefaultBodyType, PathParams, rest } from 'msw';
+import { DefaultBodyType, delay, http, HttpResponse, PathParams } from 'msw';
 import { Project } from 'types/project';
 
 import { project } from './data';
@@ -15,110 +15,124 @@ import {
 import {
   CreateCommentPayload,
   CreateIssuePayload,
-  IssuesFilter,
   UpdateIssuePayload,
   UpdateProjectPayload,
 } from './models';
 
+type ParamById = {
+  id: string;
+};
+
+type DeleteCommentParams = {
+  commentId: string;
+} & ParamById;
+
 export const handlers = [
-  rest.get('/api/issues', (req, res, ctx) => {
-    const assigneeIds = req.url.searchParams.getAll('userIds').map((v) => parseInt(v));
+  http.get('/api/issues', ({ request }) => {
+    const url = new URL(request.url);
+    const assigneeIds = url.searchParams.getAll('userIds').map((v) => parseInt(v));
+    const query = url.searchParams.get('search') || '';
 
-    const filter: IssuesFilter = {
-      query: req.url.searchParams.get('search') || '',
-      assigneeIds,
-    };
-
-    return res(ctx.json(getIssues(filter)));
+    return HttpResponse.json(
+      getIssues({
+        query,
+        assigneeIds,
+      })
+    );
   }),
 
-  rest.post('/api/issues', async (req, res, ctx) => {
-    const payload = await req.json<CreateIssuePayload>();
+  http.post<PathParams, CreateIssuePayload>('/api/issues', async ({ request }) => {
+    const payload = await request.json();
     const issue = createIssue(payload);
 
-    return res(ctx.json(issue));
+    return HttpResponse.json(issue);
   }),
 
-  rest.get('/api/issue/:id', (req, res, ctx) => {
-    const id = req.params.id;
-    const issue = getIssue(parseInt(id as string));
+  http.get<ParamById>('/api/issue/:id', ({ params }) => {
+    const id = parseInt(params.id);
+    const issue = getIssue(id);
 
     if (!issue) {
-      return res(
-        ctx.status(404),
-        ctx.json({
+      return HttpResponse.json(
+        {
           error: 'Issue not found',
-        })
+        },
+        {
+          status: 404,
+        }
       );
     }
 
-    return res(ctx.json(issue));
+    return HttpResponse.json(issue);
   }),
 
-  rest.put('/api/issue/:id', async (req, res, ctx) => {
-    const id = parseInt(req.params.id as string);
-    const payload = await req.json<UpdateIssuePayload>();
+  http.put<ParamById, UpdateIssuePayload>('/api/issue/:id', async ({ params, request }) => {
+    const id = parseInt(params.id);
+    const payload = await request.json();
     const issue = updateIssue(id, payload);
 
     if (!issue) {
-      return res(
-        ctx.status(404),
-        ctx.json({
+      return HttpResponse.json(
+        {
           error: 'Issue not found',
-        })
+        },
+        {
+          status: 404,
+        }
       );
     }
 
-    return res(ctx.json(issue));
+    return HttpResponse.json(issue);
   }),
 
-  rest.delete('/api/issue/:id', (req, res, ctx) => {
-    const id = req.params.id;
-    const result = deleteIssue(parseInt(id as string));
+  http.delete<ParamById>('/api/issue/:id', ({ params }) => {
+    const result = deleteIssue(parseInt(params.id));
 
-    return res(ctx.json({ result }));
+    return HttpResponse.json({ result });
   }),
 
-  rest.get<DefaultBodyType, PathParams, Project>('/api/project', (req, res, ctx) => {
-    const project = getProject();
-    return res(ctx.json(project));
+  http.get<PathParams, DefaultBodyType, Project>('/api/project', () => {
+    return HttpResponse.json(getProject());
   }),
 
-  rest.put<UpdateProjectPayload, PathParams, Project>('/api/project', async (req, res, ctx) => {
-    const data = await req.json<UpdateProjectPayload>();
+  http.put<PathParams, UpdateProjectPayload, Project>('/api/project', async ({ request }) => {
+    const data = await request.json();
 
     Object.assign(project, data);
 
-    await new Promise((resolve) => {
-      setTimeout(() => resolve(true), 300);
-    });
+    await delay(300);
 
-    return res(ctx.json(getProject()));
+    return HttpResponse.json(getProject());
   }),
 ];
 
-rest.post('/api/issue/:id/comments', async (req, res, ctx) => {
-  const issueId = parseInt(req.params.id as string);
-  const payload = await req.json<CreateCommentPayload>();
-  const comment = createIssueComment({ ...payload, issueId });
+http.post<ParamById, CreateCommentPayload>(
+  '/api/issue/:id/comments',
+  async ({ params, request }) => {
+    const issueId = parseInt(params.id);
+    const payload = await request.json();
+    const comment = createIssueComment({ ...payload, issueId });
 
-  if (!comment) {
-    return res(
-      ctx.status(404),
-      ctx.json({
-        error: 'Issue not found',
-      })
-    );
+    if (!comment) {
+      return HttpResponse.json(
+        {
+          error: 'Issue not found',
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    return HttpResponse.json(comment);
   }
+);
 
-  return res(ctx.json(comment));
-});
-
-rest.delete('/api/issue/:id/comment/:commentId', async (req, res, ctx) => {
-  const issueId = parseInt(req.params.id as string);
-  const commentId = parseInt(req.params.commentId as string);
+http.delete<DeleteCommentParams>('/api/issue/:id/comment/:commentId', async ({ params }) => {
+  const issueId = parseInt(params.id);
+  const commentId = parseInt(params.commentId);
 
   const result = deleteIssueComment({ commentId, issueId });
 
-  return res(ctx.json({ result }));
+  return HttpResponse.json({ result });
 });
