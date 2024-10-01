@@ -87,7 +87,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "npx eslint --ext .ts,.tsx src"
+    "lint": "npx eslint --ext .ts,.tsx src",
+    "test:coverage": "npm test -- --coverage --watchAll=false"
   },
   "browserslist": {
     "production": [
@@ -127,12 +128,24 @@
     "workerDirectory": "public"
   },
   "jest": {
+    "collectCoverage": false,
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    },
+    "watchAll": false,
     "roots": [
       "<rootDir>/src"
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
+      "!src/**/*.d.ts",
+      "!src/serviceWorker.js",
+      "!src/mocks/*.ts"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
@@ -155,7 +168,7 @@
       "^.+\\.module\\.(css|sass|scss)$"
     ],
     "modulePaths": [
-      "/Users/Oleksandr_Matviichuk1/projects/react/jira-clone/src"
+      "<rootDir>/src"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
